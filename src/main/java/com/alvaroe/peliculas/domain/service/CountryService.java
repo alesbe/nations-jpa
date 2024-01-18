@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CountryService {
     List<Country> getAll(Integer page, Integer pageSize);
+    List<Country> getAll();
 }

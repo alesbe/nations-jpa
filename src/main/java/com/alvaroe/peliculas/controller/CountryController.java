@@ -6,10 +6,7 @@ import com.alvaroe.peliculas.http_response.Response;
 import com.alvaroe.peliculas.mapper.CountryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
@@ -26,11 +23,15 @@ public class CountryController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("")
-    public Response getAll() {
-        List<CountryListWeb> countries = service.getAll(1, 10).stream()
-                .map(CountryMapper.mapper::toCountryListWeb).toList();
+    public Response getAll(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize) {
+        pageSize = (pageSize != null) ? pageSize : PAGE_SIZE;
+
+        List<CountryListWeb> countries = (page == null)
+                        ?
+                        service.getAll().stream().map(CountryMapper.mapper::toCountryListWeb).toList()
+                        :
+                        service.getAll(1, pageSize).stream().map(CountryMapper.mapper::toCountryListWeb).toList();
 
         return Response.builder().data(countries).build();
-        //return null;
     }
 }

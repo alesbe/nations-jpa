@@ -17,4 +17,9 @@ public class CountryServiceImpl implements CountryService {
     public List<Country> getAll(Integer page, Integer pageSize) {
         return this.repository.getAll(page, pageSize);
     }
+
+    @Override
+    public List<Country> getAll() {
+        return this.repository.getAll(null, null);
+    }
 }
