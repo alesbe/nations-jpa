@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class CountryRepositoryImpl implements CountryRepository {
@@ -31,5 +32,16 @@ public class CountryRepositoryImpl implements CountryRepository {
         }
 
         return countryEntities.stream().map(CountryMapper.mapper::toCountry).toList();
+    }
+
+    @Override
+    public Optional<Country> findById(Integer id) {
+        Optional<CountryEntity> countryEntity = countryDAO.findById(id);
+
+        if(countryEntity.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(CountryMapper.mapper.toCountry(countryEntity.get()));
     }
 }

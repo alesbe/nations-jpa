@@ -34,4 +34,10 @@ public class CountryController {
 
         return Response.builder().data(countries).totalRecords(countries.size()).build();
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}")
+    public Response findById(@PathVariable("id") int id) {
+        return Response.builder().data(CountryMapper.mapper.toCountryDetailWeb(service.findById(id))).build();
+    }
 }
