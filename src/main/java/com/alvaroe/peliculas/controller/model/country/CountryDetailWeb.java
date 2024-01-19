@@ -1,6 +1,7 @@
 package com.alvaroe.peliculas.controller.model.country;
 
 import com.alvaroe.peliculas.controller.model.language.LanguageDetailWeb;
+import com.alvaroe.peliculas.controller.model.region.RegionListWeb;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class CountryDetailWeb {
     Date national_day;
     String country_code;
     String long_country_code;
+    RegionListWeb region;
     List<String> languages;
 
     // TODO: Add region and languages
