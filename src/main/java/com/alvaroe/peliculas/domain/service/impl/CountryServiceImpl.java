@@ -3,6 +3,7 @@ package com.alvaroe.peliculas.domain.service.impl;
 import com.alvaroe.peliculas.domain.entity.Country;
 import com.alvaroe.peliculas.domain.repository.CountryRepository;
 import com.alvaroe.peliculas.domain.service.CountryService;
+import com.alvaroe.peliculas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,10 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public List<Country> getAll() {
         return this.repository.getAll(null, null);
+    }
+
+    @Override
+    public Country findById(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Country not found with id: " + id));
     }
 }

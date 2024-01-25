@@ -30,8 +30,14 @@ public class CountryController {
                         ?
                         service.getAll().stream().map(CountryMapper.mapper::toCountryListWeb).toList()
                         :
-                        service.getAll(1, pageSize).stream().map(CountryMapper.mapper::toCountryListWeb).toList();
+                        service.getAll(page, pageSize).stream().map(CountryMapper.mapper::toCountryListWeb).toList();
 
-        return Response.builder().data(countries).build();
+        return Response.builder().data(countries).totalRecords(countries.size()).build();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}")
+    public Response findById(@PathVariable("id") Integer id) {
+        return Response.builder().data(service.findById(id)).build();
     }
 }
