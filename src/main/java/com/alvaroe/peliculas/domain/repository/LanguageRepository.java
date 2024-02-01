@@ -1,5 +1,6 @@
 package com.alvaroe.peliculas.domain.repository;
 
+import com.alvaroe.peliculas.domain.entity.Country;
 import com.alvaroe.peliculas.domain.entity.Language;
 import com.alvaroe.peliculas.domain.entity.Region;
 
@@ -10,4 +11,5 @@ public interface LanguageRepository {
     public List<Language> getAll(Integer page, Integer pageSize);
     public Optional<Language> findById(Integer id);
     public int save(Language language);
+    public void delete(int languageId);
 }

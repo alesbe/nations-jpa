@@ -10,5 +10,6 @@ public interface CountryService {
     List<Country> getAll(Integer page, Integer pageSize);
     List<Country> getAll();
     Country findById(Integer id);
-    int insert(CountrySaveWeb countrySaveWeb);
+    int save(CountrySaveWeb countrySaveWeb);
+    void delete(int countryId);
 }

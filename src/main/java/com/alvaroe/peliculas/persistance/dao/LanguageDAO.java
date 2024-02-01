@@ -15,4 +15,5 @@ public interface LanguageDAO extends JpaRepository<LanguageEntity, Integer> {
     Page<LanguageEntity> findAll(Pageable pageable);
     List<LanguageEntity> findAll();
     Optional<LanguageEntity> findById(Integer id);
+    void deleteById(int languageId);
 }

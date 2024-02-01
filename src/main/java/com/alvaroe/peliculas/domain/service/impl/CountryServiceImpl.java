@@ -41,7 +41,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public int insert(CountrySaveWeb countrySaveWeb) {
+    public int save(CountrySaveWeb countrySaveWeb) {
         Country country = CountryMapper.mapper.toCountry(countrySaveWeb);
 
         Region region = regionRepository.findById(countrySaveWeb.getRegionId())
@@ -56,5 +56,13 @@ public class CountryServiceImpl implements CountryService {
         country.setLanguages(languages);
 
         return repository.save(country);
+    }
+
+    @Override
+    public void delete(int countryId) {
+        repository.findById(countryId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Country not found with id: " + countryId));
+
+        repository.delete(countryId);
     }
 }

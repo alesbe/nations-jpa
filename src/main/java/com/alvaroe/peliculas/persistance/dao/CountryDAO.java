@@ -17,4 +17,5 @@ public interface CountryDAO extends JpaRepository<CountryEntity, Integer> {
     List<CountryEntity> findAll();
     Optional<CountryEntity> findById(Integer id);
     CountryEntity save(CountryEntity countryEntity);
+    void deleteById(int countryId);
 }

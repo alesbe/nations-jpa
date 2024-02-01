@@ -45,11 +45,17 @@ public class CountryController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Response add(@RequestBody CountrySaveWeb countrySaveWeb) {
-        int id = service.insert(countrySaveWeb);
+    public Response save(@RequestBody CountrySaveWeb countrySaveWeb) {
+        int id = service.save(countrySaveWeb);
 
         countrySaveWeb.setId(id);
 
-        return Response.builder().data(countrySaveWeb).build();
+        return Response.builder().data(CountryMapper.mapper.toCountryDetailWeb(service.findById(countrySaveWeb.getId()))).build();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer countryId) {
+        service.delete(countryId);
     }
 }

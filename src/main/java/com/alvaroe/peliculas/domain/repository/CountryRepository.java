@@ -10,4 +10,5 @@ public interface CountryRepository {
     public List<Country> getAll(Integer page, Integer pageSize);
     public Optional<Country> findById(Integer id);
     public int save(Country country);
+    public void delete(int countryId);
 }

@@ -49,4 +49,9 @@ public class CountryRepositoryImpl implements CountryRepository {
     public int save(Country country) {
         return countryDAO.save(CountryMapper.mapper.toCountryEntity(country)).getId();
     }
+
+    @Override
+    public void delete(int countryId) {
+        countryDAO.deleteById(countryId);
+    }
 }

@@ -1,8 +1,10 @@
 package com.alvaroe.peliculas.persistance.impl;
 
+import com.alvaroe.peliculas.domain.entity.Country;
 import com.alvaroe.peliculas.domain.entity.Language;
 import com.alvaroe.peliculas.domain.entity.Region;
 import com.alvaroe.peliculas.domain.repository.LanguageRepository;
+import com.alvaroe.peliculas.mapper.CountryMapper;
 import com.alvaroe.peliculas.mapper.LanguageMapper;
 import com.alvaroe.peliculas.mapper.RegionMapper;
 import com.alvaroe.peliculas.persistance.dao.LanguageDAO;
@@ -49,6 +51,11 @@ public class LanguageRepositoryImpl implements LanguageRepository {
 
     @Override
     public int save(Language language) {
-        return 0;
+        return languageDAO.save(LanguageMapper.mapper.toLanguageEntity(language)).getId();
+    }
+
+    @Override
+    public void delete(int languageId) {
+        languageDAO.deleteById(languageId);
     }
 }

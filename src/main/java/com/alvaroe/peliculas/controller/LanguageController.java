@@ -3,6 +3,7 @@ package com.alvaroe.peliculas.controller;
 import com.alvaroe.peliculas.controller.model.country.CountryListWeb;
 import com.alvaroe.peliculas.controller.model.country.CountrySaveWeb;
 import com.alvaroe.peliculas.controller.model.language.LanguageDetailWeb;
+import com.alvaroe.peliculas.controller.model.language.LanguageSaveWeb;
 import com.alvaroe.peliculas.domain.service.CountryService;
 import com.alvaroe.peliculas.domain.service.LanguageService;
 import com.alvaroe.peliculas.http_response.Response;
@@ -39,15 +40,19 @@ public class LanguageController {
         return Response.builder().data(languages).totalRecords(languages.size()).build();
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id}")
-    public Response findById(@PathVariable("id") Integer id) {
-        return Response.builder().data(service.findById(id)).build();
-    }
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Response add(@RequestBody CountrySaveWeb countrySaveWeb) {
-        return null;
+    public Response save(@RequestBody LanguageSaveWeb languageSaveWeb) {
+        int id = service.save(languageSaveWeb);
+
+        languageSaveWeb.setId(id);
+
+        return Response.builder().data(LanguageMapper.mapper.toLanguageDetailWeb(service.findById(languageSaveWeb.getId()))).build();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer countryId) {
+        service.delete(countryId);
     }
 }
