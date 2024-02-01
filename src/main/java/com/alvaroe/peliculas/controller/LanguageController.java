@@ -1,24 +1,26 @@
 package com.alvaroe.peliculas.controller;
 
-import com.alvaroe.peliculas.controller.model.country.CountryDetailWeb;
 import com.alvaroe.peliculas.controller.model.country.CountryListWeb;
 import com.alvaroe.peliculas.controller.model.country.CountrySaveWeb;
+import com.alvaroe.peliculas.controller.model.language.LanguageDetailWeb;
 import com.alvaroe.peliculas.domain.service.CountryService;
+import com.alvaroe.peliculas.domain.service.LanguageService;
 import com.alvaroe.peliculas.http_response.Response;
 import com.alvaroe.peliculas.mapper.CountryMapper;
+import com.alvaroe.peliculas.mapper.LanguageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/country")
-public class CountryController {
+@RequestMapping("/language")
+public class LanguageController {
 
     @Autowired
-    CountryService service;
+    LanguageService service;
 
     @Value("${page.size}")
     private int PAGE_SIZE;
@@ -28,28 +30,24 @@ public class CountryController {
     public Response getAll(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize) {
         pageSize = (pageSize != null) ? pageSize : PAGE_SIZE;
 
-        List<CountryListWeb> countries = (page == null)
-                        ?
-                        service.getAll().stream().map(CountryMapper.mapper::toCountryListWeb).toList()
-                        :
-                        service.getAll(page, pageSize).stream().map(CountryMapper.mapper::toCountryListWeb).toList();
+        List<LanguageDetailWeb> languages = (page == null)
+                ?
+                service.getAll().stream().map(LanguageMapper.mapper::toLanguageDetailWeb).toList()
+                :
+                service.getAll(page, pageSize).stream().map(LanguageMapper.mapper::toLanguageDetailWeb).toList();
 
-        return Response.builder().data(countries).totalRecords(countries.size()).build();
+        return Response.builder().data(languages).totalRecords(languages.size()).build();
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public Response findById(@PathVariable("id") Integer id) {
-        return Response.builder().data(CountryMapper.mapper.toCountryDetailWeb(service.findById(id))).build();
+        return Response.builder().data(service.findById(id)).build();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public Response add(@RequestBody CountrySaveWeb countrySaveWeb) {
-        int id = service.insert(countrySaveWeb);
-
-        countrySaveWeb.setId(id);
-
-        return Response.builder().data(countrySaveWeb).build();
+        return null;
     }
 }

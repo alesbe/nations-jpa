@@ -1,5 +1,6 @@
 package com.alvaroe.peliculas.mapper;
 
+import com.alvaroe.peliculas.controller.model.continent.ContinentDetailWeb;
 import com.alvaroe.peliculas.domain.entity.Continent;
 import com.alvaroe.peliculas.domain.entity.Country;
 import com.alvaroe.peliculas.persistance.model.ContinentEntity;
@@ -12,4 +13,5 @@ public interface ContinentMapper {
     ContinentMapper mapper = Mappers.getMapper(ContinentMapper.class);
 
     Continent toContinent(ContinentEntity continentEntity);
+    ContinentDetailWeb toContinentDetailWeb(Continent continent);
 }

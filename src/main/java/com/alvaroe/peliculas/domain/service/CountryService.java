@@ -1,5 +1,6 @@
 package com.alvaroe.peliculas.domain.service;
 
+import com.alvaroe.peliculas.controller.model.country.CountrySaveWeb;
 import com.alvaroe.peliculas.domain.entity.Country;
 import org.springframework.stereotype.Component;
 
@@ -9,4 +10,5 @@ public interface CountryService {
     List<Country> getAll(Integer page, Integer pageSize);
     List<Country> getAll();
     Country findById(Integer id);
+    int insert(CountrySaveWeb countrySaveWeb);
 }

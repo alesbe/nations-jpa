@@ -1,4 +1,4 @@
-package com.alvaroe.peliculas.controller.model.region;
+package com.alvaroe.peliculas.controller.model.continent;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegionListWeb {
+public class ContinentDetailWeb {
     int id;
     String name;
-    String continent;
 }

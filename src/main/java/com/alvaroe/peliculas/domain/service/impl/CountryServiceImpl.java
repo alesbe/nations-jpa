@@ -1,9 +1,15 @@
 package com.alvaroe.peliculas.domain.service.impl;
 
+import com.alvaroe.peliculas.controller.model.country.CountrySaveWeb;
 import com.alvaroe.peliculas.domain.entity.Country;
+import com.alvaroe.peliculas.domain.entity.Language;
+import com.alvaroe.peliculas.domain.entity.Region;
 import com.alvaroe.peliculas.domain.repository.CountryRepository;
+import com.alvaroe.peliculas.domain.repository.LanguageRepository;
+import com.alvaroe.peliculas.domain.repository.RegionRepository;
 import com.alvaroe.peliculas.domain.service.CountryService;
 import com.alvaroe.peliculas.exception.ResourceNotFoundException;
+import com.alvaroe.peliculas.mapper.CountryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +20,10 @@ import java.util.Optional;
 public class CountryServiceImpl implements CountryService {
     @Autowired
     CountryRepository repository;
+    @Autowired
+    RegionRepository regionRepository;
+    @Autowired
+    LanguageRepository languageRepository;
 
     @Override
     public List<Country> getAll(Integer page, Integer pageSize) {
@@ -28,5 +38,23 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Country findById(Integer id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Country not found with id: " + id));
+    }
+
+    @Override
+    public int insert(CountrySaveWeb countrySaveWeb) {
+        Country country = CountryMapper.mapper.toCountry(countrySaveWeb);
+
+        Region region = regionRepository.findById(countrySaveWeb.getRegionId())
+                .orElseThrow(() -> new ResourceNotFoundException("Region not found with id: " + countrySaveWeb.getRegionId()));
+
+        List<Language> languages = countrySaveWeb.getLanguageIds().stream()
+                .map(languagueId -> languageRepository.findById(languagueId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Language not found with id: " + languagueId)))
+                .toList();
+
+        country.setRegion(region);
+        country.setLanguages(languages);
+
+        return repository.save(country);
     }
 }
