@@ -3,6 +3,7 @@ package com.alvaroe.peliculas.controller;
 import com.alvaroe.peliculas.controller.model.country.CountryListWeb;
 import com.alvaroe.peliculas.controller.model.country.CountrySaveWeb;
 import com.alvaroe.peliculas.controller.model.region.RegionListWeb;
+import com.alvaroe.peliculas.controller.model.region.RegionSaveWeb;
 import com.alvaroe.peliculas.domain.entity.Region;
 import com.alvaroe.peliculas.domain.service.CountryService;
 import com.alvaroe.peliculas.domain.service.RegionService;
@@ -48,7 +49,18 @@ public class RegionController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Response add(@RequestBody CountrySaveWeb countrySaveWeb) {
-        return null;
+    public Response add(@RequestBody RegionSaveWeb regionSaveWeb) {
+        int id = service.save(regionSaveWeb);
+
+        regionSaveWeb.setId(id);
+
+        return Response.builder().data(RegionMapper.mapper.toRegionDetailWeb(service.findById(regionSaveWeb.getId()))).build();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("")
+    public Response update(@RequestBody RegionSaveWeb regionSaveWeb) {
+        service.save(regionSaveWeb);
+        return Response.builder().data(RegionMapper.mapper.toRegionDetailWeb(service.findById(regionSaveWeb.getId()))).build();
     }
 }

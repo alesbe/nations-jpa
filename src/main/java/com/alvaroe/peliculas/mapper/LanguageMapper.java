@@ -14,7 +14,6 @@ public interface LanguageMapper {
 
     LanguageDetailWeb toLanguageDetailWeb(Language language);
 
-    @Mapping(target = "id", ignore = true)
     Language toLanguage(LanguageSaveWeb languageSaveWeb);
     Language toLanguage(LanguageEntity languageEntity);
 

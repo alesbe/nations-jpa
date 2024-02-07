@@ -48,6 +48,6 @@ public class RegionRepositoryImpl implements RegionRepository {
 
     @Override
     public int save(Region region) {
-        return 0;
+        return regionDAO.save(RegionMapper.mapper.toRegionEntity(region)).getId();
     }
 }

@@ -50,6 +50,14 @@ public class LanguageController {
         return Response.builder().data(LanguageMapper.mapper.toLanguageDetailWeb(service.findById(languageSaveWeb.getId()))).build();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("")
+    public Response update(@RequestBody LanguageSaveWeb languageSaveWeb) {
+        service.save(languageSaveWeb);
+
+        return Response.builder().data(LanguageMapper.mapper.toLanguageDetailWeb(service.findById(languageSaveWeb.getId()))).build();
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer countryId) {

@@ -12,6 +12,8 @@ import org.mapstruct.factory.Mappers;
 public interface ContinentMapper {
     ContinentMapper mapper = Mappers.getMapper(ContinentMapper.class);
 
-    Continent toContinent(ContinentEntity continentEntity);
     ContinentDetailWeb toContinentDetailWeb(Continent continent);
+    Continent toContinent(ContinentEntity continentEntity);
+    ContinentEntity toContinentEntity(Continent continent);
+
 }
