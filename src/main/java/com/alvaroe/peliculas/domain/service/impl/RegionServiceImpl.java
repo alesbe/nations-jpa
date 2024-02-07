@@ -28,6 +28,7 @@ public class RegionServiceImpl implements RegionService {
 
     @Override
     public Region findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Region not found with id: " + id));
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Region not found with id: " + id));
     }
 }
