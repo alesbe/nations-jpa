@@ -53,6 +53,14 @@ public class CountryController {
         return Response.builder().data(CountryMapper.mapper.toCountryDetailWeb(service.findById(countrySaveWeb.getId()))).build();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("")
+    public Response update(@RequestBody CountrySaveWeb countrySaveWeb) {
+        service.save(countrySaveWeb);
+
+        return Response.builder().data(CountryMapper.mapper.toCountryDetailWeb(service.findById(countrySaveWeb.getId()))).build();
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer countryId) {
