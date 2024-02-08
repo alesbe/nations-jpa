@@ -36,11 +36,20 @@ public class Country {
     Region region;
     List<Language> languages;
 
-    public void setRegion(Region region) {
+
+    /*public void setCountryCodeLong(String countryCodeLong) {
+        if (countryCodeLong.charAt(0) != this.countryCodeShort.charAt(0)) {
+            throw new ValidationException("La primera letra del código de pais debe ser la misma.");
+        }
+
+        this.countryCodeLong = countryCodeLong;
+    }*/
+
+    /*public void setRegion(Region region) {
         if(this.name.equals(region.getName())) {
             throw new ValidationException("El nombre de la región no puede ser igual al del país.");
         }
 
         this.region = region;
-    }
+    }*/
 }

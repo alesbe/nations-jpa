@@ -1,5 +1,6 @@
 package com.alvaroe.peliculas.common.validation.annotation;
 
+import com.alvaroe.peliculas.common.validation.AreaValidator;
 import com.alvaroe.peliculas.common.validation.NationalDayValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -11,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = NationalDayValidator.class)
+@Constraint(validatedBy = AreaValidator.class)
 public @interface ValidArea {
     String message() default "El área tiene que ser mayor a 0";
 

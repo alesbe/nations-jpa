@@ -270,3 +270,4 @@ UNLOCK TABLES;
 -- Dump completed on 2019-10-18 11:48:19
 
 ALTER TABLE country_languages DROP COLUMN official;
+-- DELETE FROM countries WHERE country_id IN (13, 49, 54, 151, 174, 188, 196);

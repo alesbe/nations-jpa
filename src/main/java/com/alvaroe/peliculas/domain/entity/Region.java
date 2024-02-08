@@ -13,11 +13,11 @@ public class Region {
     String name;
     Continent continent;
 
-    public void setContinent(Continent continent) {
-        if(this.name.equals(continent.getName())) {
+    /*public void setContinent(Continent continent) {
+        if(this.getName().equals(continent.getName())) {
             throw new ValidationException("El nombre del continente no puede ser igual al de la región.");
         }
 
         this.continent = continent;
-    }
+    }*/
 }
