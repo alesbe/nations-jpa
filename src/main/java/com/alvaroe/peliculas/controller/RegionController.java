@@ -63,4 +63,10 @@ public class RegionController {
         service.save(regionSaveWeb);
         return Response.builder().data(RegionMapper.mapper.toRegionDetailWeb(service.findById(regionSaveWeb.getId()))).build();
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer regionId) {
+        service.delete(regionId);
+    }
 }

@@ -1,6 +1,7 @@
 package com.alvaroe.peliculas.controller;
 
 import com.alvaroe.peliculas.controller.model.continent.ContinentDetailWeb;
+import com.alvaroe.peliculas.controller.model.continent.ContinentSaveWeb;
 import com.alvaroe.peliculas.controller.model.country.CountrySaveWeb;
 import com.alvaroe.peliculas.controller.model.region.RegionListWeb;
 import com.alvaroe.peliculas.domain.service.ContinentService;
@@ -47,7 +48,25 @@ public class ContinentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Response add(@RequestBody CountrySaveWeb countrySaveWeb) {
-        return null;
+    public Response save(@RequestBody ContinentSaveWeb continentSaveWeb) {
+        int id = service.save(continentSaveWeb);
+
+        continentSaveWeb.setId(id);
+
+        return Response.builder().data(continentSaveWeb).build();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("")
+    public Response update(@RequestBody ContinentSaveWeb continentSaveWeb) {
+        service.save(continentSaveWeb);
+
+        return Response.builder().data(continentSaveWeb).build();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer continentId) {
+        service.delete(continentId);
     }
 }

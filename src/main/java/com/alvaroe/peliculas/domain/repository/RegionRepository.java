@@ -10,4 +10,5 @@ public interface RegionRepository {
     public List<Region> getAll(Integer page, Integer pageSize);
     public Optional<Region> findById(Integer id);
     public int save(Region region);
+    public void delete(int regionId);
 }

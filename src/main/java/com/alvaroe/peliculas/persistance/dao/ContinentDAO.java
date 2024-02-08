@@ -14,4 +14,6 @@ public interface ContinentDAO extends JpaRepository<ContinentEntity, Integer> {
     Page<ContinentEntity> findAll(Pageable pageable);
     List<ContinentEntity> findAll();
     Optional<ContinentEntity> findById(Integer id);
+    ContinentEntity save(ContinentEntity continentEntity);
+    void deleteById(int continentId);
 }

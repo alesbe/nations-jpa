@@ -49,6 +49,11 @@ public class ContinentRepositoryImpl implements ContinentRepository {
 
     @Override
     public int save(Continent continent) {
-        return 0;
+        return continentDAO.save(ContinentMapper.mapper.toContinentEntity(continent)).getId();
+    }
+
+    @Override
+    public void delete(int countryId) {
+        continentDAO.deleteById(countryId);
     }
 }

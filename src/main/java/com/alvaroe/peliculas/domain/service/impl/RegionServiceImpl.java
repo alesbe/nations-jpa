@@ -52,4 +52,12 @@ public class RegionServiceImpl implements RegionService {
 
         return repository.save(region);
     }
+
+    @Override
+    public void delete(int regionId) {
+        repository.findById(regionId)
+                .orElseThrow(() -> new ResourceNotFoundException("Region not found with id: " + regionId));
+
+        repository.delete(regionId);
+    }
 }

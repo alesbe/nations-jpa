@@ -11,4 +11,5 @@ public interface RegionService {
     List<Region> getAll();
     Region findById(Integer id);
     public int save(RegionSaveWeb regionSaveWeb);
+    void delete(int regionId);
 }

@@ -10,4 +10,5 @@ public interface ContinentRepository {
     public List<Continent> getAll(Integer page, Integer pageSize);
     public Optional<Continent> findById(Integer id);
     public int save(Continent continent);
+    public void delete(int continentId);
 }

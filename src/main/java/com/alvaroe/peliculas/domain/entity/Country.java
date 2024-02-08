@@ -1,9 +1,12 @@
 package com.alvaroe.peliculas.domain.entity;
 
+import com.alvaroe.peliculas.common.validation.annotation.ValidNationalDay;
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +17,9 @@ public class Country {
     int id;
     String name;
     float area;
-    Date nationalDay;
+
+    @ValidNationalDay
+    LocalDate nationalDay;
     String countryCodeShort;
     String countryCodeLong;
     Region region;

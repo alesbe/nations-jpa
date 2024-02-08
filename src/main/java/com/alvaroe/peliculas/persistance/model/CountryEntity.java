@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CountryEntity {
     float area;
 
     @Column(name = "national_day", nullable = true)
-    Date nationalDay;
+    LocalDate nationalDay;
 
     @Column(name = "country_code2")
     String countryCodeShort;

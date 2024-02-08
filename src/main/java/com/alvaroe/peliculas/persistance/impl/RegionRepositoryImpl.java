@@ -50,4 +50,9 @@ public class RegionRepositoryImpl implements RegionRepository {
     public int save(Region region) {
         return regionDAO.save(RegionMapper.mapper.toRegionEntity(region)).getId();
     }
+
+    @Override
+    public void delete(int regionId) {
+        regionDAO.deleteById(regionId);
+    }
 }

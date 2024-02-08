@@ -1,6 +1,7 @@
 package com.alvaroe.peliculas.http_errors;
 
 import com.alvaroe.peliculas.exception.ResourceNotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,6 +28,16 @@ public class ApiExceptionHandler {
     public ErrorMessage exception(Exception exception) {
         exception.printStackTrace();
         return new ErrorMessage("Internal error", HttpStatus.INTERNAL_SERVER_ERROR.value());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({
+            ConstraintViolationException.class,
+            jakarta.validation.ValidationException.class
+    })
+    @ResponseBody
+    public ErrorMessage ValidatonException(Exception exception){
+        return new ErrorMessage(exception.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

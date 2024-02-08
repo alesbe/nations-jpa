@@ -13,8 +13,11 @@ import com.alvaroe.peliculas.mapper.CountryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static com.alvaroe.peliculas.common.validation.Validation.validate;
 
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -55,6 +58,7 @@ public class CountryServiceImpl implements CountryService {
         country.setRegion(region);
         country.setLanguages(languages);
 
+        validate(country);
         return repository.save(country);
     }
 

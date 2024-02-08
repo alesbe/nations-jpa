@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class CountryDetailWeb {
     int id;
     String name;
     float area;
-    Date national_day;
+    LocalDate national_day;
     String country_code;
     String long_country_code;
     RegionListWeb region;

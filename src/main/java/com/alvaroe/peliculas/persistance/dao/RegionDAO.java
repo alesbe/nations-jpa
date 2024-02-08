@@ -15,4 +15,5 @@ public interface RegionDAO extends JpaRepository<RegionEntity, Integer> {
     Page<RegionEntity> findAll(Pageable pageable);
     List<RegionEntity> findAll();
     Optional<RegionEntity> findById(Integer id);
+    void deleteById(int regionId);
 }
