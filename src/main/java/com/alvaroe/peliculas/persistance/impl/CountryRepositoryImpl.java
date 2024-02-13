@@ -54,4 +54,13 @@ public class CountryRepositoryImpl implements CountryRepository {
     public void delete(int countryId) {
         countryDAO.deleteById(countryId);
     }
+
+    @Override
+    public List<Country> findCountriesByRegionName(String regionName) {
+        List<CountryEntity> countryEntities = countryDAO.findCountriesByRegionName(regionName);
+
+        return countryEntities.stream()
+                .map(CountryMapper.mapper::toCountry)
+                .toList();
+    }
 }

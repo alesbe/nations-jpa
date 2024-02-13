@@ -18,4 +18,8 @@ public interface CountryDAO extends JpaRepository<CountryEntity, Integer> {
     Optional<CountryEntity> findById(Integer id);
     CountryEntity save(CountryEntity countryEntity);
     void deleteById(int countryId);
+
+
+    @Query(value = "SELECT c FROM CountryEntity c WHERE c.region.name = :regionName")
+    List<CountryEntity> findCountriesByRegionName(@Param("regionName") String regionName);
 }

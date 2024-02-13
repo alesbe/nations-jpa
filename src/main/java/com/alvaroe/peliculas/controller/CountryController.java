@@ -66,4 +66,14 @@ public class CountryController {
     public void delete(@PathVariable("id") Integer countryId) {
         service.delete(countryId);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("findCountriesByRegionName/{regionName}")
+    public Response findCountriesByRegionName(@PathVariable("regionName") String regionName) {
+        List<CountryListWeb> countries = service.findCountriesByRegionName(regionName).stream()
+                .map(CountryMapper.mapper::toCountryListWeb)
+                .toList();
+
+        return Response.builder().data(countries).build();
+    }
 }

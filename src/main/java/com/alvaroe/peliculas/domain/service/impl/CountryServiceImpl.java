@@ -69,4 +69,9 @@ public class CountryServiceImpl implements CountryService {
 
         repository.delete(countryId);
     }
+
+    @Override
+    public List<Country> findCountriesByRegionName(String regionName) {
+        return repository.findCountriesByRegionName(regionName);
+    }
 }

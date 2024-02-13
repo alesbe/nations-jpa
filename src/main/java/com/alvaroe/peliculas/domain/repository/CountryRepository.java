@@ -11,4 +11,5 @@ public interface CountryRepository {
     public Optional<Country> findById(Integer id);
     public int save(Country country);
     public void delete(int countryId);
+    public List<Country> findCountriesByRegionName(String regionName);
 }

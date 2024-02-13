@@ -12,4 +12,5 @@ public interface CountryService {
     Country findById(Integer id);
     int save(CountrySaveWeb countrySaveWeb);
     void delete(int countryId);
+    List<Country> findCountriesByRegionName(String regionName);
 }
